@@ -1,5 +1,5 @@
-const URL = 'https://crudcrud.com/api/46ccaced62f74452ba5e3e6a21d5b794/detail'
-function handleClick(event){
+const URL = 'https://crudcrud.com/api/4c88c827d13d4dddb43c91ede0491c0e/details'
+async function handleClick(event){
     event.preventDefault()
 
 const details = {
@@ -10,12 +10,10 @@ const details = {
 }
 
 // console.log(details)
-axios.post(`${URL}`,details).then((res) => {
+
+    const res =  await axios.post(`${URL}`,details)
     console.log(res.data)
     displayItem(res.data)
-}).catch((err) => {
-    console.log(err)
-});
 
 document.getElementById('userName').value = "";
 document.getElementById('userEmail').value = "";
@@ -56,29 +54,29 @@ updateUser(userId)
 
 }
 
-function getUserData(){
-    axios.get(`${URL}`).then((res)=>{
-        console.log(res.data)
+async function getUserData(){
+    
+        const res = await axios.get(`${URL}`)
         const existingUser = res.data
-    }).catch((err)=>{console.log(err)})
+    
 }
 
-function deleteUser(userId,listItem){
-axios.delete(`${URL}/${userId}`).then(()=>{
-    listItem.remove();
-}).catch((err)=>{console.log(err)})
+async function deleteUser(userId,listItem){
+    
+        const res = await axios.delete(`${URL}/${userId}`)
+        listItem.remove();
+
 }
 
-function updateUser(userId){
-    axios.get(`${URL}/${userId}`).then((res)=>{
+async function updateUser(userId){
+
+const res = await axios.get(`${URL}/${userId}`)
 const existing = res.data;
 document.getElementById('userName').value = existing.name;
 document.getElementById('userEmail').value = existing.email;
 document.getElementById('phone').value = existing.phone;
 document.getElementById('bus').value = existing.select;
-    }).catch((err)=>{
-        console.log(err)
-    })
+    
 }
 
 
@@ -86,13 +84,16 @@ document.getElementById('bus').value = existing.select;
 //filter dropdown
 document.getElementById('filter').addEventListener('change', handleFilterChange);
 
-function handleFilterChange(event) {
+async function handleFilterChange(event) {
     const selectedBus = event.target.value;
-    getUserData(selectedBus);
+    await getUserData(selectedBus);
 }
 
-function getUserData(selectedBus) {
-    axios.get(`${URL}`).then((res) => {
+async function getUserData(selectedBus) {
+    
+
+    
+    const res = await axios.get(`${URL}`)
         const data = res.data;
        
         const userList = document.getElementById('userList');
@@ -102,7 +103,7 @@ function getUserData(selectedBus) {
         const filteredData = selectedBus ? data.filter(item => item.select === selectedBus) : data;
 
         filteredData.forEach(item => displayItem(item));
-    }).catch((err) => {
-        console.log(err);
-    });
-}
+    }
+  
+
+

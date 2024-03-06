@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bus Book</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-   
+
     <h1>Bus Book</h1>
     <div id="main">
-    <label for="filter">Filter</label>
-    <select name="" id="filter" onselect=" handleFilterChange(event)">
-<option value="Bus1">Bus1</option>
-<option value="Bus2">Bus2</option>
-<option value="Bus3">Bus3</option>
-    </select>
-</div>
+        <label for="filter">Filter</label>
+        <select name="" id="filter" onselect=" handleFilterChange(event)">
+            <option value="Bus1">Bus1</option>
+            <option value="Bus2">Bus2</option>
+            <option value="Bus3">Bus3</option>
+        </select>
+    </div>
     <form onsubmit="handleClick(event)">
         <div>
             <label for="userName">Name:-</label>
@@ -30,19 +32,20 @@
             <label for="phone">Phone Number:-</label>
             <input type="tel" id="phone">
         </div>
-         <div>
+        <div>
             <label for="bus">Bus Number</label>
             <select name="busNum" id="bus">
                 <option value="Bus1">Bus1</option>
                 <option value="Bus2">Bus2</option>
                 <option value="Bus3">Bus3</option>
             </select>
-         </div>
+        </div>
 
-     <button>Book</button>
+        <button>Book</button>
     </form>
     <ul id="userList"></ul>
-<Script src="index.js"></Script>
+    <Script src="index.js"></Script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
+
 </html>
